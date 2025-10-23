@@ -18,7 +18,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.133.1'
+          hugo-version: '0.149.0'   # or 'latest'
           extended: true          # SCSS 사용 시 필수
 
       - name: Build
