@@ -1,4 +1,5 @@
 ---
 title: "Home"
+draft: false
 ---
 This is English home. Go to [Getting Started](/en/docs/intro/).
