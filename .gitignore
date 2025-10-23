@@ -17,6 +17,7 @@ Desktop.ini
 # Hugo build artifacts (auto-generated)
 # =======================================
 /public/
+!/public/.nojekyll
 /resources/_gen/
 hugo_cache/
 hugo_stats.json
