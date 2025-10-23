@@ -1,0 +1,261 @@
+# Hugo Book 문서 작성 규칙
+
+## 프로젝트 개요
+이 프로젝트는 Hugo Book 테마(https://hugo-book-demo.netlify.app)를 사용하는 Apptest.ai 문서 사이트입니다.
+
+## 문서 작성 시 참고사항
+
+### 1. Front Matter 표준
+모든 마크다운 파일은 다음 front matter를 포함해야 합니다:
+
+```yaml
+---
+title: "페이지 제목"
+weight: 10                    # 사이드바 순서 (10 단위 권장)
+draft: false                  # 배포 준비 완료 시 false
+bookToC: true                 # 우측 목차 표시 여부
+translationKey: "unique-key"  # 다국어 연결 (동일 문서끼리 같은 키)
+---
+```
+
+### 2. Hugo Book Shortcodes 사용
+
+#### Columns (여러 열 레이아웃)
+```markdown
+{{% columns %}}
+- 첫 번째 열 내용
+- 두 번째 열 내용
+- 세 번째 열 내용
+{{% /columns %}}
+```
+
+#### Cards (카드 스타일 박스)
+```markdown
+{{< card >}}
+## 제목
+내용
+{{< /card >}}
+```
+
+#### Button
+```markdown
+{{<button href="/path">}}버튼 텍스트{{</button>}}
+```
+
+#### Hints (알림 박스)
+```markdown
+{{< hint info >}}
+정보 메시지
+{{< /hint >}}
+
+{{< hint warning >}}
+경고 메시지
+{{< /hint >}}
+
+{{< hint danger >}}
+위험/오류 메시지
+{{< /hint >}}
+```
+
+#### Tabs
+```markdown
+{{< tabs "uniqueid" >}}
+{{< tab "iOS" >}} iOS 관련 내용 {{< /tab >}}
+{{< tab "Android" >}} Android 관련 내용 {{< /tab >}}
+{{< tab "Web" >}} Web 관련 내용 {{< /tab >}}
+{{< /tabs >}}
+```
+
+#### Details (접기/펼치기)
+```markdown
+{{< details "클릭하여 펼치기" >}}
+숨겨진 상세 내용
+{{< /details >}}
+```
+
+#### Expand (확장 가능 섹션)
+```markdown
+{{< expand "더 보기" >}}
+확장 내용
+{{< /expand >}}
+```
+
+#### Code Blocks with Syntax Highlighting
+```markdown
+```python
+def hello_world():
+    print("Hello, World!")
+```
+```
+
+### 3. 문서 구조 규칙
+
+#### 디렉토리 구조
+```
+content/
+├── en/                    # 영어 문서
+│   ├── _index.md         # 영어 홈페이지 (bookToC: false)
+│   └── docs/
+│       ├── _index.md     # 문서 섹션 인덱스
+│       └── intro.md      # 개별 문서
+├── ko/                    # 한국어 문서
+│   ├── _index.md         # 한국어 홈페이지 (bookToC: false)
+│   └── docs/
+│       ├── _index.md
+│       └── intro.md
+```
+
+#### 홈페이지 (_index.md) 구조
+```yaml
+---
+title: "사이트 제목"
+draft: false
+bookToC: false  # 홈페이지는 목차 숨김
+---
+
+# 메인 제목
+
+설명 문구
+
+{{<button href="/path">}}시작하기{{</button>}}
+
+{{% columns %}}
+- ## 섹션 1
+  설명
+- ## 섹션 2
+  설명
+{{% /columns %}}
+
+{{% columns %}}
+- {{< card >}} 기능 1 {{< /card >}}
+- {{< card >}} 기능 2 {{< /card >}}
+- {{< card >}} 기능 3 {{< /card >}}
+{{% /columns %}}
+```
+
+#### 일반 문서 페이지
+```yaml
+---
+title: "문서 제목"
+weight: 10
+draft: false
+bookToC: true  # 긴 문서는 목차 표시
+translationKey: "unique-id"
+---
+
+# 제목
+
+## 소제목
+
+내용...
+
+{{< hint info >}}
+유용한 팁
+{{< /hint >}}
+```
+
+### 4. 다국어 지원 규칙
+
+- 모든 문서는 `en/`과 `ko/` 양쪽에 동일한 구조로 작성
+- `translationKey`를 사용하여 언어 간 연결
+- 링크는 언어별 경로 사용: `/en/docs/intro/`, `/ko/docs/intro/`
+
+### 5. 이미지 및 미디어
+
+#### 이미지 추가
+```markdown
+# 기본
+![대체 텍스트](/images/screenshot.png)
+
+# Figure shortcode
+{{< figure src="/images/screenshot.png" alt="스크린샷" caption="이미지 설명" >}}
+```
+
+#### 이미지 저장 위치
+```
+static/
+└── images/
+    ├── screenshots/
+    ├── diagrams/
+    └── icons/
+```
+
+### 6. 링크 규칙
+
+```markdown
+# 내부 링크 (같은 사이트)
+[링크 텍스트](/ko/docs/guide/)
+
+# 외부 링크
+[외부 사이트](https://example.com)
+
+# 섹션 앵커
+[특정 섹션으로](#heading-id)
+```
+
+### 7. Weight 체계
+
+문서 순서 지정을 위한 weight 가이드:
+```
+홈 (_index.md):        (weight 없음 또는 1)
+시작하기:             10-19
+주요 가이드:          20-49
+API 레퍼런스:         50-79
+고급 주제:            80-99
+부록/FAQ:            100+
+```
+
+### 8. 금지사항
+
+- ❌ HTML 태그 직접 사용 지양 (shortcode 사용)
+- ❌ 절대 경로 하드코딩 (`https://apptestai.github.io/...` 대신 상대 경로)
+- ❌ 이미지를 `content/` 폴더에 저장 (`static/` 사용)
+- ❌ `draft: true` 상태로 커밋 (배포 준비된 문서만)
+
+### 9. 권장사항
+
+- ✅ 섹션별로 `_index.md` 파일 생성
+- ✅ 긴 문서는 여러 파일로 분리
+- ✅ 코드 예제에는 언어 지정 (```python, ```javascript 등)
+- ✅ 중요한 정보는 hint shortcode 사용
+- ✅ 플랫폼별 내용은 tabs shortcode 사용
+
+### 10. 예제 참고
+
+공식 예제 사이트 참고:
+- 데모: https://hugo-book-demo.netlify.app
+- 로컬 예제: `themes/hugo-book/exampleSite/content.en/`
+
+### 11. 배포 전 체크리스트
+
+- [ ] 모든 문서에 front matter 작성
+- [ ] `draft: false` 확인
+- [ ] 다국어 문서 쌍 확인 (en/ko)
+- [ ] `translationKey` 일치 확인
+- [ ] 링크 동작 확인
+- [ ] 이미지 경로 확인
+- [ ] 로컬 테스트 완료 (`hugo server`)
+
+### 12. 개발 명령어
+
+```bash
+# 개발 서버
+hugo server
+
+# 프로덕션 빌드
+hugo --environment production --minify
+
+# 배포 (GitHub Actions 자동 실행)
+git push origin main
+```
+
+## AI 어시스턴트에 대한 지침
+
+문서 작성 요청 시:
+1. 항상 Hugo Book 테마의 shortcodes 사용
+2. Front matter 표준 준수
+3. 다국어 지원 (en/ko 동시 작성)
+4. 예제 코드는 실제 동작하는 코드로 작성
+5. 공식 데모 사이트(https://hugo-book-demo.netlify.app) 스타일 참고
+6. `themes/hugo-book/exampleSite/` 의 구조와 패턴 따르기
+
