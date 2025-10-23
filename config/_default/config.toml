@@ -12,6 +12,12 @@ enableGitInfo = true              # Git 커밋 정보 기반 lastmod 자동화
 canonifyURLs = true               # 절대 URL로 변환
 enableEmoji = true                # 이모지 지원 (:smile: 등)
 
+# 마크다운 렌더링 설정
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true               # HTML in Markdown 허용
+
 [params]
   BookTheme = "auto"
   BookSearch = true               # 검색 기능 활성화
