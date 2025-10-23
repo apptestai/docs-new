@@ -1,0 +1,44 @@
+baseURL = "http://localhost:1313/"
+title = "Apptest.ai Docs"
+theme = "hugo-book"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true   # ko도 /ko/ 아래로
+
+[params]
+  BookTheme = "auto"
+  # 공통값이 있으면 여기, 언어별 값은 [languages.xx.params]에서 override
+
+# ── 언어별 설정
+[languages]
+
+  [languages.ko]
+    languageName = "한국어"
+    weight = 1
+    title = "문서"
+    contentDir = "content/ko"        # ← 언어별 콘텐츠 루트
+    [languages.ko.params]
+      BookSection = "docs"           # 사이드바에 사용할 섹션 폴더명
+      BookDateFormat = "2006-01-02"
+
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    title = "Docs"
+    contentDir = "content/en"
+    [languages.en.params]
+      BookSection = "docs"
+      BookDateFormat = "Jan 2, 2006"
+
+# (선택) 언어별 메뉴 예시
+[menus]
+  # 공통 메뉴가 필요하면 여기
+[languages.ko.menus]
+  [[languages.ko.menus.after]]
+    name = "GitHub"
+    url  = "https://github.com/alex-shpak/hugo-book"
+    weight = 10
+[languages.en.menus]
+  [[languages.en.menus.after]]
+    name = "GitHub"
+    url  = "https://github.com/alex-shpak/hugo-book"
+    weight = 10

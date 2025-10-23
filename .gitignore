@@ -1,0 +1,82 @@
+# =======================================
+# macOS system files
+# =======================================
+.DS_Store
+*/.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =======================================
+# Hugo build artifacts (auto-generated)
+# =======================================
+public/
+resources/
+hugo_cache/
+hugo_stats.json
+.cache/
+tmp/
+temp/
+dist/
+_build/
+
+# =======================================
+# Hugo server / build locks
+# =======================================
+.hugo_build.lock
+hugo_build.lock
+.livereload*
+
+# =======================================
+# Hugo modules / Go
+# =======================================
+_modules/
+go.work
+go.work.sum
+go.sum
+go.mod
+
+# =======================================
+# Hugo Book theme (ignore generated or example content)
+# =======================================
+themes/hugo-book/exampleSite/
+themes/hugo-book/public/
+themes/hugo-book/resources/
+themes/hugo-book/.hugo_build.lock
+themes/hugo-book/.hugo_cache/
+book.min.*.css
+*.min.js
+*.map
+
+# =======================================
+# CMS / Decap (optional)
+# =======================================
+admin/config.yml~
+proxy-server/
+*.lock
+
+# =======================================
+# IDE / Editor files
+# =======================================
+.vscode/
+.idea/
+*.code-workspace
+
+# =======================================
+# Node / package management
+# =======================================
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log*
+
+# =======================================
+# Hosting / deployment platforms
+# =======================================
+.netlify/
+.vercel/
