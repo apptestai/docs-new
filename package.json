@@ -1,0 +1,15 @@
+{
+  "name": "apptestai-docs",
+  "version": "1.0.0",
+  "description": "Apptest.ai Documentation with Netlify Functions",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "hugo --environment production --minify"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}
+

@@ -6,7 +6,7 @@
  * Functions가 정상 동작하는지 확인하는 간단한 헬스체크 엔드포인트
  */
 
-export async function handler(event, context) {
+exports.handler = async function (event, context) {
     return {
         statusCode: 200,
         headers: {
@@ -20,5 +20,5 @@ export async function handler(event, context) {
             message: 'Netlify Functions is working!',
         }),
     };
-}
+};
 

@@ -13,7 +13,7 @@
  * https://your-site.netlify.app/api/oauth-callback?code=AUTH_CODE
  */
 
-export async function handler(event, context) {
+exports.handler = async function (event, context) {
     // CORS 프리플라이트 처리
     if (event.httpMethod === 'OPTIONS') {
         return {
@@ -103,5 +103,5 @@ export async function handler(event, context) {
             body: JSON.stringify({ error: 'Internal server error' }),
         };
     }
-}
+};
 

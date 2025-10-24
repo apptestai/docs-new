@@ -73,14 +73,24 @@ REDIRECT_URI=https://your-site.netlify.app/api/oauth-callback
 ### 로컬 테스트
 
 ```bash
-# Netlify CLI 설치
-npm install -g netlify-cli
+# 의존성 설치 (처음 한 번만)
+npm install
 
 # Functions 로컬 실행
+npm run dev
+# 또는
 netlify dev
 ```
 
 로컬 환경변수는 `.env` 파일에 저장 (`.gitignore`에 포함됨)
+
+```bash
+# .env 파일 예시
+TOKEN_URL=https://oauth-provider.com/token
+CLIENT_ID=your_client_id
+CLIENT_SECRET=your_client_secret
+REDIRECT_URI=http://localhost:8888/api/auth-callback
+```
 
 ### GH Pages + Netlify Functions 조합
 
