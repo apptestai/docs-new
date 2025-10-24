@@ -1,0 +1,42 @@
+# =======================================
+# Netlify Configuration
+# =======================================
+
+# Hugo 빌드 설정
+[build]
+  publish = "public"
+  command = "hugo --environment production --minify"
+
+[build.environment]
+  HUGO_VERSION = "0.140.2"
+  HUGO_ENV = "production"
+  HUGO_ENABLEGITINFO = "true"
+
+# =======================================
+# Netlify Functions 설정
+# =======================================
+[functions]
+  directory = "netlify/functions"
+  # 함수 타임아웃 설정 (초 단위, 기본 10초, 최대 26초)
+  included_files = ["netlify/functions/**"]
+
+# =======================================
+# API 라우팅 설정
+# =======================================
+# /api/* → /.netlify/functions/* 로 깔끔하게 라우팅
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
+
+# =======================================
+# 헤더 설정 (CORS 등)
+# =======================================
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+

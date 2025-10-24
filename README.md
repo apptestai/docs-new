@@ -48,6 +48,54 @@ hugo server
 git push origin main
 ```
 
+## Netlify Functions
+
+서버리스 함수를 사용하여 OAuth 콜백 등의 백엔드 로직을 구현할 수 있습니다.
+
+### 함수 엔드포인트
+
+- `/api/health-check` - Functions 동작 확인
+- `/api/oauth-callback` - OAuth 인증 콜백 처리
+
+### 환경변수 설정
+
+Netlify 대시보드에서 다음 환경변수를 설정해야 합니다:
+
+**Site settings → Build & deploy → Environment variables**
+
+```
+TOKEN_URL=https://oauth-provider.com/token
+CLIENT_ID=your_client_id
+CLIENT_SECRET=your_client_secret
+REDIRECT_URI=https://your-site.netlify.app/api/oauth-callback
+```
+
+### 로컬 테스트
+
+```bash
+# Netlify CLI 설치
+npm install -g netlify-cli
+
+# Functions 로컬 실행
+netlify dev
+```
+
+로컬 환경변수는 `.env` 파일에 저장 (`.gitignore`에 포함됨)
+
+### GH Pages + Netlify Functions 조합
+
+1. **GitHub Pages**: 정적 사이트 호스팅 (무료)
+2. **Netlify Functions**: 서버리스 API만 사용 (무료 티어 내)
+
+프론트엔드에서 Netlify Functions 호출:
+
+```javascript
+// GH Pages 사이트에서 Netlify 함수 호출
+fetch('https://your-app.netlify.app/api/oauth-callback?code=AUTH_CODE')
+  .then(res => res.json())
+  .then(data => console.log(data));
+```
+
 ## 문서 작성
 
 자세한 문서 작성 규칙은 `.cursorrules` 파일을 참고하세요.
