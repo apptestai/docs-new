@@ -2,9 +2,9 @@ backend:
   name: github
   repo: apptestai/docs-new
   branch: main
+  site_domain: apptestai-docs.netlify.app
   base_url: https://api.netlify.com
   auth_endpoint: auth
-  site_id: 05b47522-03bb-4929-9a02-56faa60edc77
 
 # 로컬 개발용 - 프로덕션에서는 주석 처리
 # local_backend: true
