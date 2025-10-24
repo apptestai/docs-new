@@ -1,12 +1,12 @@
 backend:
   name: github
-  repo: apptestai/docs-new  # GitHub 저장소명으로 변경
+  repo: apptestai/docs-new
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
 
-# 로컬 개발용 (선택사항)
-local_backend: true
+# 로컬 개발용 - 프로덕션에서는 주석 처리
+# local_backend: true
 
 publish_mode: editorial_workflow  # PR 기반 워크플로우
 media_folder: "static/images"
