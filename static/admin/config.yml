@@ -1,0 +1,83 @@
+backend:
+  name: github
+  repo: apptestai/docs-new  # GitHub 저장소명으로 변경
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+# 로컬 개발용 (선택사항)
+local_backend: true
+
+publish_mode: editorial_workflow  # PR 기반 워크플로우
+media_folder: "static/images"
+public_folder: "/images"
+
+collections:
+  # 영어 홈페이지
+  - name: "home_en"
+    label: "홈페이지 (EN)"
+    files:
+      - name: "index_en"
+        label: "메인 페이지 (English)"
+        file: "content/en/_index.md"
+        fields:
+          - { label: "제목", name: "title", widget: "string" }
+          - { label: "초안", name: "draft", widget: "boolean", default: false }
+          - { label: "목차 표시", name: "bookToC", widget: "boolean", default: false }
+          - { label: "내용", name: "body", widget: "markdown" }
+
+  # 한국어 홈페이지
+  - name: "home_ko"
+    label: "홈페이지 (KO)"
+    files:
+      - name: "index_ko"
+        label: "메인 페이지 (한국어)"
+        file: "content/ko/_index.md"
+        fields:
+          - { label: "제목", name: "title", widget: "string" }
+          - { label: "초안", name: "draft", widget: "boolean", default: false }
+          - { label: "목차 표시", name: "bookToC", widget: "boolean", default: false }
+          - { label: "내용", name: "body", widget: "markdown" }
+
+  # 영어 문서
+  - name: "docs_en"
+    label: "문서 (EN)"
+    folder: "content/en/docs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "정렬 순서", name: "weight", widget: "number", default: 10, value_type: "int" }
+      - { label: "초안", name: "draft", widget: "boolean", default: false }
+      - { label: "목차 표시", name: "bookToC", widget: "boolean", default: true }
+      - { label: "번역 키", name: "translationKey", widget: "string", hint: "다국어 연결용 고유 ID" }
+      - { label: "내용", name: "body", widget: "markdown" }
+
+  # 한국어 문서
+  - name: "docs_ko"
+    label: "문서 (KO)"
+    folder: "content/ko/docs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "정렬 순서", name: "weight", widget: "number", default: 10, value_type: "int" }
+      - { label: "초안", name: "draft", widget: "boolean", default: false }
+      - { label: "목차 표시", name: "bookToC", widget: "boolean", default: true }
+      - { label: "번역 키", name: "translationKey", widget: "string", hint: "다국어 연결용 고유 ID" }
+      - { label: "내용", name: "body", widget: "markdown" }
+
+  # 추가 섹션 예시 (필요시 활성화)
+  # - name: "guides"
+  #   label: "가이드"
+  #   folder: "content/{{locale}}/docs/guides"
+  #   create: true
+  #   slug: "{{slug}}"
+  #   i18n: true
+  #   fields:
+  #     - { label: "제목", name: "title", widget: "string", i18n: true }
+  #     - { label: "정렬 순서", name: "weight", widget: "number", default: 20, i18n: duplicate }
+  #     - { label: "초안", name: "draft", widget: "boolean", default: false, i18n: duplicate }
+  #     - { label: "목차 표시", name: "bookToC", widget: "boolean", default: true, i18n: duplicate }
+  #     - { label: "번역 키", name: "translationKey", widget: "string", i18n: duplicate }
+  #     - { label: "내용", name: "body", widget: "markdown", i18n: true }
